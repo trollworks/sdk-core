@@ -34,7 +34,7 @@ struct game_state {
 };
 
 struct listener {
-  game_state& game_state;
+  game_state& gs;
 
   void on_setup(tw::controlflow& cf) {
     // create window and opengl context, load resources
@@ -71,7 +71,7 @@ struct listener {
 
 int main() {
   auto gs = game_state{};
-  auto l = listener{.game_state = gs};
+  auto l = listener{.gs = gs};
 
   auto loop = tw::game_loop{}
     .with_fps(60)

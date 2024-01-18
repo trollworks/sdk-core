@@ -8,14 +8,14 @@ struct game_state {
 };
 
 struct listener {
-  game_state& game_state;
+  game_state& gs;
 
   void on_setup(tw::controlflow& cf) {
-    game_state.setup = true;
+    gs.setup = true;
   }
 
   void on_teardown() {
-    game_state.teardown = true;
+    gs.teardown = true;
   }
 
   void on_update(float dt, tw::controlflow& cf) {
@@ -25,7 +25,7 @@ struct listener {
 
 TEST_CASE("game_loop") {
   auto gs = game_state{};
-  auto l = listener{.game_state = gs};
+  auto l = listener{.gs = gs};
 
   auto loop = tw::game_loop{}
     .on_setup<&listener::on_setup>(l)
