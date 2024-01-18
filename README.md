@@ -1,5 +1,14 @@
 # Trollworks SDK Core
 
+
+<center>
+
+![tests](https://img.shields.io/github/actions/workflow/status/trollworks/sdk-core/tests.yml?style=flat-square&logo=github&label=tests)
+![license](https://img.shields.io/github/license/trollworks/sdk-core?style=flat-square&color=blue)
+![version](https://img.shields.io/github/v/release/trollworks/sdk-core?style=flat-square&color=red)
+
+</center>
+
 Trollworks is an (unfinished) game engine in C++ I've been working on for a
 while.
 
