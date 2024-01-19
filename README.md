@@ -26,6 +26,14 @@ This library provides:
  - a UI component framework inspired by React to help organize immediate-mode UI code
  - coroutines inspired by Unity coroutines
 
+List of backends:
+
+| Name | 2D/3D | URL |
+| --- | --- | --- |
+| SDL2 | 2D | https://github.com/trollworks/sdk-backend-sdl |
+| raylib | 2D | https://github.com/trollworks/sdk-backend-raylib (TODO) |
+| glfw | 3D | https://github.com/trollworks/sdk-backend-glfw (TODO) |
+
 ## Installation
 
 Clone the repository in your project (don't forget to pull the submodules) and
