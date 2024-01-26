@@ -1,0 +1,8 @@
+{
+  "name": "trollworks-sdk-core",
+  "version": "0.2.0",
+  "scripts": {
+    "build": "true",
+    "install": "make install DESTDIR=$SHIPP_DIST_DIR"
+  }
+}
