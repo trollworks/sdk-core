@@ -39,6 +39,21 @@ List of backends:
 Clone the repository in your project (don't forget to pull the submodules) and
 add the `include/` folder to your include paths.
 
+Or, if you are using [Shipp](https://github.com/linkdd/shipp), add to your
+dependencies:
+
+```json
+{
+  "dependencies": [
+    {
+      "name": "trollworks-sdk-core",
+      "url": "https://github.com/trollworks/sdk-core.git",
+      "version": "v0.2.0"
+    }
+  ]
+}
+```
+
 ## Usage
 
 ### Game loop
