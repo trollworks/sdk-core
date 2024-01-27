@@ -11,7 +11,7 @@ namespace tw {
   class coroutine {
     public:
       struct none {};
-      struct promise_type;
+      class promise_type;
       using handle_type = std::coroutine_handle<promise_type>;
 
       class promise_type {
