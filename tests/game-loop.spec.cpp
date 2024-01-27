@@ -28,15 +28,16 @@ TEST_CASE("game_loop") {
   auto gs = game_state{};
   auto l1 = listener{.gs = gs, .val = 1};
   auto l2 = listener{.gs = gs, .val = 2};
+  auto loop = tw::game_loop{};
 
-  auto loop = tw::game_loop{}
+  loop
     .on_setup<&listener::on_setup>(l1)
     .on_teardown<&listener::on_teardown>(l1)
     .on_update<&listener::on_update>(l1)
     .on_setup<&listener::on_setup>(l2)
-    .on_teardown<&listener::on_teardown>(l2);
+    .on_teardown<&listener::on_teardown>(l2)
+    .run();
 
-  loop.run();
   CHECK(gs.setup == 2);
   CHECK(gs.teardown == 1);
 }
