@@ -53,6 +53,7 @@ namespace tw {
 
     public:
       game_loop() = default;
+      game_loop(const game_loop&) = delete;
 
       game_loop& with_fps(float fps) {
         if (fps < 0.0f) {
