@@ -104,8 +104,9 @@ struct listener {
 int main() {
   auto gs = game_state{};
   auto l = listener{.gs = gs};
+  auto loop = tw::game_loop{};
 
-  auto loop = tw::game_loop{}
+  loop
     .with_fps(60)
     .with_ups(50)
     .on_setup<&listener::on_setup>(l)
@@ -115,9 +116,9 @@ int main() {
     .on_update<&listener::on_update>(l)
     .on_fixed_update<&listener::on_fixed_update>(l)
     .on_late_update<&listener::on_late_update>(l)
-    .on_render<&listener::on_render>(l);
+    .on_render<&listener::on_render>(l)
+    .run();
 
-  loop.run();
   return 0;
 }
 ```
@@ -171,13 +172,14 @@ struct sdl_backend {
 
 int main() {
   auto back = sdl_backend{};
+  auto loop = tw::game_loop{};
 
-  auto loop = tw::game_loop{}
+  loop
     .with_fps(60)
     .with_ups(50)
-    .with_backend(back);
+    .with_backend(back)
+    .run();
 
-  loop.run();
   return 0;
 }
 ```
