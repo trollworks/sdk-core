@@ -246,8 +246,10 @@ resource cache from EnTT, for more information consult
 struct my_asset {
   // ...
 
+  using resource_type = my_asset;
+
   struct loader_type {
-    using result_type = std::shared_ptr<my_asset>;
+    using result_type = std::shared_ptr<resource_type>;
 
     result_type operator()(/* ... */) const {
       // ...
@@ -256,6 +258,54 @@ struct my_asset {
 };
 
 auto& cache = tw::asset_manager<my_asset>::cache();
+```
+
+> **NB:** The `resource_type` type name may seem redundant, but it is there for
+> assets that loads the same type of resources, consider the following example:
+
+```cpp
+struct spritesheet {
+  // ...
+};
+
+struct aseprite_sheet {
+  using resource_type = spritesheet;
+
+  struct loader_type {
+    using result_type = std::shared_ptr<resource_type>;
+
+    result_type operator()(/* ... */) const {
+      // ...
+    }
+  };
+};
+
+struct texturepacker_sheet {
+  using resource_type = spritesheet;
+
+  struct loader_type {
+    using result_type = std::shared_ptr<resource_type>;
+
+    result_type operator()(/* ... */) const {
+      // ...
+    }
+  };
+};
+```
+
+Both `aseprite_sheet` and `texturepacker_sheet` assets will return a
+`spritesheet` resource:
+
+```cpp
+auto [it, loaded] = tw::asset_manager<aseprite_sheet>::cache().load(/* ... */);
+auto [id, sheet] = *it;
+// sheet is entt::resource<spritesheet>
+```
+
+```cpp
+auto [it, loaded] = tw::asset_manager<texturepacker_sheet>::cache().load(/* ... */);
+auto [id, sheet] = *it;
+// sheet is entt::resource<spritesheet>
 ```
 
 ### Messaging
