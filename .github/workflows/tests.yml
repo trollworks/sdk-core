@@ -9,16 +9,19 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         compiler:
           - package: gcc-13
             bin: g++
+            os: ubuntu-24.04
           - package: gcc-12
             bin: g++
+            os: ubuntu-latest
           - package: gcc-11
             bin: g++
+            os: ubuntu-latest
+    runs-on: ${{ matrix.compiler.os }}
     steps:
       - name: checkout-scm
         uses: actions/checkout@v3
